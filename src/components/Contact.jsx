@@ -29,7 +29,7 @@ function Contact() {
                             <div>
                                 <h3 className="font-bold text-white text-lg">Alamat Kami</h3>
                                 <p className="text-gray-400 text-sm mt-1 leading-relaxed">
-                                    Jl. Raya Utama Koobon Space, Bali, Indonesia
+                                    Jl. Ratna, Sibangkaja, Bali, Indonesia
                                 </p>
                             </div>
                         </div>

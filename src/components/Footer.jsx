@@ -1,11 +1,13 @@
+import { FaInstagram, FaTiktok } from 'react-icons/fa'
+
 function Footer() {
   return (
     <footer className="bg-[#0D0D0D] text-gray-400 border-t border-white/10 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-          
+
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
             <h2 className="text-2xl font-bold tracking-wider text-[#D4AF37]">
@@ -38,22 +40,27 @@ function Footer() {
             <p className="text-xs text-gray-500">
               Dapatkan update menu dan promo terbaru via media sosial.
             </p>
-            <div className="flex gap-3 pt-2">
-              <a 
-                href="https://www.instagram.com/koobon.space/" 
-                target="_blank" 
+
+            {/* Social Media Buttons dengan Ikon React Icons */}
+            <div className="flex gap-3 pt-2 justify-between md:justify-start">
+              <a
+                href="https://www.instagram.com/koobon.space/"
+                target="_blank"
                 rel="noreferrer"
-                className="p-2 bg.222222 bg-[#1E1E1E] border border-white/10 rounded-lg text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition cursor-pointer text-xs font-semibold"
+                aria-label="Instagram Koobon Space"
+                className="flex items-center gap-2 px-3.5 py-2 bg-[#1E1E1E] border border-white/10 rounded-lg text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition cursor-pointer text-xs font-semibold"
               >
-                Instagram
+                <FaInstagram className="w-6 h-6" />
               </a>
-              <a 
-                href="https://www.tiktok.com/@koobon.space" 
-                target="_blank" 
+
+              <a
+                href="https://www.tiktok.com/@koobon.space"
+                target="_blank"
                 rel="noreferrer"
-                className="p-2 bg-[#1E1E1E] border border-white/10 rounded-lg text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition cursor-pointer text-xs font-semibold"
+                aria-label="TikTok Koobon Space"
+                className="flex items-center gap-2 px-3.5 py-2 bg-[#1E1E1E] border border-white/10 rounded-lg text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition cursor-pointer text-xs font-semibold"
               >
-                TikTok
+                <FaTiktok className="w-6 h-6" />
               </a>
             </div>
           </div>
@@ -61,9 +68,8 @@ function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+        <div className="pt-8 flex justify-center items-center text-xs text-gray-500 gap-4">
           <p>© {new Date().getFullYear()} Koobon Space. All rights reserved.</p>
-          <p>Designed with ❤️ for Koobon Space</p>
         </div>
 
       </div>

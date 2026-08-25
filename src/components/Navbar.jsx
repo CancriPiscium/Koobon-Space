@@ -28,11 +28,11 @@ function Navbar() {
 
                 {/* Navigation Links - Desktop View */}
                 <div className="hidden md:flex items-center gap-8">
-                    <a href="#home" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Home</a>
-                    <a href="#about" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">About</a>
-                    <a href="#menu" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Menu</a>
-                    <a href="#promo" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Promo</a>
-                    <a href="#contact" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Contact</a>
+                    <a href="/#home" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Home</a>
+                    <a href="/#about" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">About</a>
+                    <a href="/#menu" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Menu</a>
+                    <a href="/#promo" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Promo</a>
+                    <a href="/#contact" className="text-gray-300 hover:text-[#D4AF37] transition font-medium">Contact</a>
                 </div>
 
                 {/* Action Button - Desktop View */}
