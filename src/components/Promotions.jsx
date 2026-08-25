@@ -46,7 +46,7 @@ function Promotions() {
   return (
     <section id="promo" className="py-16 sm:py-24 bg-[#0D0D0D] scroll-mt-24 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        
+
         {/* Header Section */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-[#D4AF37] font-semibold text-xs tracking-widest uppercase">
@@ -63,7 +63,7 @@ function Promotions() {
         {/* Grid Kartu Promo */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {promoList.map((promo) => (
-            <div 
+            <div
               key={promo.id}
               onClick={() => setSelectedPromo(promo)} // KLIK KARTU UNTUK BUKA MODAL
               className="bg-[#151515] border border-white/10 rounded-2xl p-6 relative hover:border-[#D4AF37]/50 transition duration-300 shadow-xl flex flex-col justify-between group cursor-pointer"
@@ -93,7 +93,7 @@ function Promotions() {
                   </span>
                 </div>
 
-                <button 
+                <button
                   onClick={(e) => {
                     e.stopPropagation()
                     setSelectedPromo(promo)
@@ -111,25 +111,25 @@ function Promotions() {
 
       {/* MODAL DETAIL PROMO */}
       {selectedPromo && (
-        <div 
+        <div
           onClick={() => setSelectedPromo(null)}
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
         >
-          <div 
-            onClick={(e) => e.stopPropagation()} 
+          <div
+            onClick={(e) => e.stopPropagation()}
             className="bg-[#181818] border border-white/10 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl relative"
           >
             {/* Banner Gambar Modal */}
             <div className="relative h-56 sm:h-64 w-full overflow-hidden">
-              <img 
-                src={selectedPromo.image} 
-                alt={selectedPromo.title} 
+              <img
+                src={selectedPromo.image}
+                alt={selectedPromo.title}
                 className="w-full h-full object-cover"
               />
               <span className="absolute top-4 left-4 bg-[#D4AF37] text-black text-xs font-extrabold px-3 py-1 rounded-full uppercase shadow">
                 {selectedPromo.saveAmount}
               </span>
-              <button 
+              <button
                 onClick={() => setSelectedPromo(null)}
                 className="absolute top-4 right-4 bg-black/60 hover:bg-black text-white p-2 rounded-full backdrop-blur-md transition cursor-pointer"
                 aria-label="Tutup Promo"
@@ -186,9 +186,11 @@ function Promotions() {
 
               {/* Tombol Klaim via WhatsApp */}
               <div className="pt-3">
-                <a 
-                  href={`https://wa.me/6289636097277?text=Halo%20Koobon%20Space,%20saya%20ingin%20mengklaim%20${encodeURIComponent(selectedPromo.title)}%20seharga%20${selectedPromo.promoPrice}`}
-                  target="_blank" 
+                <a
+                  href={`https://wa.me/6281234567890?text=${encodeURIComponent(
+                    `Halo *Koobon Space*! 👋\n\nSaya ingin mengklaim paket promo:\n- *Promo:* ${selectedPromo.title}\n- *Isi Paket:* ${selectedPromo.items}\n- *Harga Promo:* ${selectedPromo.promoPrice} (Hemat ${selectedPromo.saveAmount})\n\nApakah promo ini masih berlaku hari ini?`
+                  )}`}
+                  target="_blank"
                   rel="noreferrer"
                   className="block w-full text-center bg-[#D4AF37] hover:bg-[#B8962E] text-black font-bold text-sm py-3 rounded-xl transition shadow-lg shadow-[#D4AF37]/20 cursor-pointer"
                 >

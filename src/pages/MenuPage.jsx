@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -259,7 +259,7 @@ function MenuPage() {
               {/* Action Button */}
               <div className="pt-4">
                 <a 
-                  href={`https://wa.me/6281234567890?text=Halo%20Koobon%20Space,%20saya%20ingin%20pesan%20${encodeURIComponent(selectedMenu.name)}`}
+                  href={`https://wa.me/6289636097277?text=Halo%20Koobon%20Space,%20saya%20ingin%20pesan%20${encodeURIComponent(selectedMenu.name)}`}
                   target="_blank" 
                   rel="noreferrer"
                   className="block w-full text-center bg-[#D4AF37] hover:bg-[#B8962E] text-black font-bold text-sm py-3 rounded-xl transition shadow-lg shadow-[#D4AF37]/20 cursor-pointer"
