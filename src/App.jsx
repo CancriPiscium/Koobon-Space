@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import AboutSection from './components/AboutSection'
@@ -6,11 +7,16 @@ import Promotions from './components/Promotions'
 import Testimonial from './components/Testimonial'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ReservationModal from './components/ReservationModal'
 
 function App() {
+  // State untuk mengontrol buka/tutup modal reservasi
+  const [isReservationOpen, setIsReservationOpen] = useState(false)
+
   return (
     <div className="bg-[#121212] text-[#F5F5F5] min-h-screen overflow-x-hidden">
-      <Navbar />
+      {/* 1. Kirim prop pemanggil modal ke Navbar */}
+      <Navbar onOpenReservation={() => setIsReservationOpen(true)} />
       
       {/* HERO SECTION */}
       <main id="home" className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 bg-[#121212] flex items-center scroll-mt-24 relative overflow-hidden">
@@ -42,9 +48,14 @@ function App() {
                 <a href="#menu" className="w-full sm:w-auto text-center bg-[#D4AF37] text-black px-7 py-3 rounded-full font-semibold hover:bg-[#B8962E] hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-[#D4AF37]/20 cursor-pointer text-sm sm:text-base">
                   Lihat Menu
                 </a>
-                <a href="#about" className="w-full sm:w-auto text-center border border-[#D4AF37]/50 text-[#D4AF37] px-7 py-3 rounded-full font-medium hover:bg-[#D4AF37]/10 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer text-sm sm:text-base">
-                  Tentang Kami
-                </a>
+                
+                {/* 2. Opsional: Tombol Reservasi Langsung di Hero */}
+                <button 
+                  onClick={() => setIsReservationOpen(true)}
+                  className="w-full sm:w-auto text-center border border-[#D4AF37]/50 text-[#D4AF37] px-7 py-3 rounded-full font-medium hover:bg-[#D4AF37]/10 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer text-sm sm:text-base"
+                >
+                  Reservasi Meja
+                </button>
               </div>
 
               {/* Stat Brief */}
@@ -68,7 +79,7 @@ function App() {
               <img 
                 src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop" 
                 alt="Coffee Cup" 
-                className="w-full max-w-xs sm:max-w-sm md:max-w-md h-300px sm:h-400px md:h-480px object-cover rounded-2xl shadow-2xl border border-white/10 transform md:rotate-2 group-hover:rotate-0 group-hover:scale-102 transition duration-500"
+                className="w-full max-w-xs sm:max-w-sm md:max-w-md h-[300px] sm:h-[400px] md:h-[480px] object-cover rounded-2xl shadow-2xl border border-white/10 transform md:rotate-2 group-hover:rotate-0 group-hover:scale-102 transition duration-500"
               />
             </div>
 
@@ -80,6 +91,13 @@ function App() {
       <PopularMenu />
       <Promotions />
       <Testimonial />
+      
+      {/* 3. Kirim isOpen dan onClose ke ReservationModal */}
+      <ReservationModal 
+        isOpen={isReservationOpen} 
+        onClose={() => setIsReservationOpen(false)} 
+      />
+      
       <Contact />
       <Footer />
     </div>
