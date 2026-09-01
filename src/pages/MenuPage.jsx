@@ -1,11 +1,9 @@
-// import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 function MenuPage() {
   const [activeCategory, setActiveCategory] = useState('ALL')
-  // State untuk menyimpan item menu yang sedang dipilih untuk modal detail
   const [selectedMenu, setSelectedMenu] = useState(null)
 
   const fullMenu = [
@@ -107,11 +105,6 @@ function MenuPage() {
       <main className="pt-28 pb-16">
         <div className="max-w-7xl mx-auto px-6">
           
-          {/* Tombol Kembali */}
-          {/* <Link to="/" className="inline-flex items-center gap-2 text-[#D4AF37] hover:underline mb-8 text-sm font-semibold">
-            ← Kembali ke Beranda
-          </Link> */}
-
           {/* Header Title */}
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-[#D4AF37] font-semibold text-xs tracking-widest uppercase">
@@ -121,7 +114,7 @@ function MenuPage() {
               Daftar Menu Koobon Space
             </h1>
             <p className="text-gray-400 mt-3 text-sm sm:text-base">
-              Klik pada salah satu menu di bawah untuk melihat rincian bahan dan cara pemesanannya.
+              Klik pada salah satu menu di bawah untuk melihat rincian bahan dan informasi rasa.
             </p>
           </div>
 
@@ -147,11 +140,10 @@ function MenuPage() {
             {filteredMenu.map((item) => (
               <div 
                 key={item.id}
-                onClick={() => setSelectedMenu(item)} // KLIK KARTU UNTUK BUKA MODAL DETAIL
+                onClick={() => setSelectedMenu(item)}
                 className="bg-[#181818] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D4AF37]/50 transition duration-300 shadow-xl flex flex-col justify-between group cursor-pointer"
               >
                 <div>
-                  {/* Image Container */}
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={item.image} 
@@ -168,7 +160,6 @@ function MenuPage() {
                     </span>
                   </div>
 
-                  {/* Card Info */}
                   <div className="p-5">
                     <span className="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase">
                       {item.category}
@@ -182,7 +173,6 @@ function MenuPage() {
                   </div>
                 </div>
 
-                {/* Action Button */}
                 <div className="px-5 pb-5 pt-2">
                   <span className="block w-full text-center bg-[#222] group-hover:bg-[#D4AF37] group-hover:text-black text-gray-300 font-semibold text-xs py-2.5 rounded-xl border border-white/10 transition">
                     Lihat Detail
@@ -198,7 +188,7 @@ function MenuPage() {
       {/* FOOTER */}
       <Footer />
 
-      {/* MODAL DETAIL MENU (MUNCUL SAAT SALAH SATU MENU DIKLIK) */}
+      {/* MODAL DETAIL MENU */}
       {selectedMenu && (
         <div 
           onClick={() => setSelectedMenu(null)}
@@ -256,16 +246,11 @@ function MenuPage() {
                 </p>
               </div>
 
-              {/* Action Button */}
-              <div className="pt-4">
-                <a 
-                  href={`https://wa.me/6289636097277?text=Halo%20Koobon%20Space,%20saya%20ingin%20pesan%20${encodeURIComponent(selectedMenu.name)}`}
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="block w-full text-center bg-[#D4AF37] hover:bg-[#B8962E] text-black font-bold text-sm py-3 rounded-xl transition shadow-lg shadow-[#D4AF37]/20 cursor-pointer"
-                >
-                  Pesan via WhatsApp
-                </a>
+              {/* Info Catatan Pemesanan (Tanpa Tombol WhatsApp) */}
+              <div className="pt-4 border-t border-white/10 text-center">
+                <p className="text-xs text-gray-400 italic">
+                  *Pemesanan makanan & minuman dilakukan langsung di tempat (kasir / meja).
+                </p>
               </div>
             </div>
 

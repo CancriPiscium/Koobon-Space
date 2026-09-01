@@ -2,10 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function PopularMenu() {
-  // State untuk menyimpan item menu yang sedang dipilih (null jika tidak ada modal yang terbuka)
   const [selectedMenu, setSelectedMenu] = useState(null)
 
-  // Daftar Menu Favorit
   const popularItems = [
     {
       id: 1,
@@ -71,7 +69,7 @@ function PopularMenu() {
           {popularItems.map((item) => (
             <div 
               key={item.id} 
-              onClick={() => setSelectedMenu(item)} // KLIK KARTU UNTUK MEMBUKA DETAIL MODAL
+              onClick={() => setSelectedMenu(item)}
               className="bg-[#181818] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D4AF37]/50 transition duration-300 shadow-xl flex flex-col justify-between group cursor-pointer"
             >
               <div>
@@ -183,16 +181,11 @@ function PopularMenu() {
                 </p>
               </div>
 
-              {/* Action Button */}
-              <div className="pt-4">
-                <a 
-                  href={`https://wa.me/6281234567890?text=Halo%20Koobon%20Space,%20saya%20ingin%20pesan%20${encodeURIComponent(selectedMenu.name)}`}
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="block w-full text-center bg-[#D4AF37] hover:bg-[#B8962E] text-black font-bold text-sm py-3 rounded-xl transition shadow-lg shadow-[#D4AF37]/20 cursor-pointer"
-                >
-                  Pesan via WhatsApp
-                </a>
+              {/* Info Catatan Pemesanan (Tanpa Tombol WhatsApp) */}
+              <div className="pt-4 border-t border-white/10 text-center">
+                <p className="text-xs text-gray-400 italic">
+                  *Pemesanan makanan & minuman dilakukan langsung di tempat (kasir / meja).
+                </p>
               </div>
             </div>
 

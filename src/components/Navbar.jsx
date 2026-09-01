@@ -1,24 +1,31 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 function Navbar({ onOpenReservation }) {
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
+
+  // Fungsi navigasi yang aman dari rute manapun
+  const getNavPath = (targetHash) => {
+    return location.pathname === '/' ? targetHash : `/${targetHash}`
+  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-[#0D0D0D]/90 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <a href="#home" className="text-2xl font-bold tracking-wider text-[#D4AF37]">
+        <Link to="/" className="text-2xl font-bold tracking-wider text-[#D4AF37]">
           KOOBON
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 text-sm text-gray-300">
-          <a href="#home" className="hover:text-[#D4AF37] transition">Home</a>
-          <a href="#about" className="hover:text-[#D4AF37] transition">About</a>
-          <a href="#menu" className="hover:text-[#D4AF37] transition">Menu</a>
-          <a href="#promo" className="hover:text-[#D4AF37] transition">Promo</a>
-          <a href="#contact" className="hover:text-[#D4AF37] transition">Contact</a>
+          <Link to="/" className="hover:text-[#D4AF37] transition">Home</Link>
+          <a href={getNavPath('#about')} className="hover:text-[#D4AF37] transition">About</a>
+          <Link to="/menu" className="hover:text-[#D4AF37] transition">Menu</Link>
+          <a href={getNavPath('#promo')} className="hover:text-[#D4AF37] transition">Promo</a>
+          <a href={getNavPath('#contact')} className="hover:text-[#D4AF37] transition">Contact</a>
         </div>
 
         {/* Reservation Button (Desktop) */}
@@ -49,15 +56,15 @@ function Navbar({ onOpenReservation }) {
       {/* Mobile Menu Dropdown */}
       {isOpen && (
         <div className="md:hidden bg-[#121212] border-b border-white/10 px-6 pt-4 pb-6 space-y-4">
-          <a href="#home" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Home</a>
-          <a href="#about" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">About</a>
-          <a href="#menu" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Menu</a>
-          <a href="#promo" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Promo</a>
-          <a href="#contact" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Contact</a>
+          <Link to="/" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Home</Link>
+          <a href={getNavPath('#about')} onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">About</a>
+          <Link to="/menu" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Menu</Link>
+          <a href={getNavPath('#promo')} onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Promo</a>
+          <a href={getNavPath('#contact')} onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Contact</a>
           <button 
             onClick={() => {
               setIsOpen(false)
-              onOpenReservation()
+              if (onOpenReservation) onOpenReservation()
             }}
             className="w-full bg-[#D4AF37] text-black font-bold py-2.5 rounded-full text-center block text-sm"
           >
