@@ -187,7 +187,7 @@ function Promotions() {
               {/* Tombol Klaim via WhatsApp */}
               <div className="pt-3">
                 <a
-                  href={`https://wa.me/6281234567890?text=${encodeURIComponent(
+                  href={`https://wa.me/6289636097277?text=${encodeURIComponent(
                     `Halo *Koobon Space*! 👋\n\nSaya ingin mengklaim paket promo:\n- *Promo:* ${selectedPromo.title}\n- *Isi Paket:* ${selectedPromo.items}\n- *Harga Promo:* ${selectedPromo.promoPrice} (Hemat ${selectedPromo.saveAmount})\n\nApakah promo ini masih berlaku hari ini?`
                   )}`}
                   target="_blank"
