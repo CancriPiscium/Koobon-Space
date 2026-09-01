@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import AboutSection from './components/AboutSection'
@@ -10,81 +10,82 @@ import Footer from './components/Footer'
 import ReservationModal from './components/ReservationModal'
 
 function App() {
-  // State untuk mengontrol buka/tutup modal reservasi
   const [isReservationOpen, setIsReservationOpen] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  // Foto-foto carousel untuk background
+  const images = [
+    "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1920&auto=format&fit=crop"
+  ]
+
+  // Berganti foto otomatis tiap 5 detik tanpa animasi zoom
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [images.length])
 
   return (
     <div className="bg-[#121212] text-[#F5F5F5] min-h-screen overflow-x-hidden">
-      {/* 1. Kirim prop pemanggil modal ke Navbar */}
       <Navbar onOpenReservation={() => setIsReservationOpen(true)} />
       
-      {/* HERO SECTION */}
-      <main id="home" className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 bg-[#121212] flex items-center scroll-mt-24 relative overflow-hidden">
+      {/* HERO SECTION FULLSCREEN STABIL */}
+      <main id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center">
         
-        {/* Glow Effect Background dengan Animasi Pulse */}
-        <div className="absolute top-1/4 -left-20 w-60 h-60 sm:w-80 sm:h-80 bg-[#D4AF37]/10 rounded-full blur-3xl -z-10 animate-glow"></div>
-        
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full animate-fade-in">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            
-            {/* Kolom Kiri: Teks */}
-            <div className="space-y-4 sm:space-y-6 text-center md:text-left">
-              <span className="inline-block px-3.5 py-1 sm:px-4 sm:py-1.5 bg-[#2B1E16] text-[#D4AF37] text-[10px] sm:text-xs font-semibold rounded-full tracking-widest uppercase border border-[#D4AF37]/30">
-                COFFEE & COZY SPACE
-              </span>
-              
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-                Nikmati Kopi, <br className="hidden sm:inline" />
-                <span className="text-[#D4AF37]">Temukan Ketenangan.</span>
-              </h1>
-              
-              <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
-                Tempat sederhana untuk menikmati racikan biji kopi pilihan, 
-                berbagi cerita hangat, dan menciptakan momen berkesan setiap sore.
-              </p>
-
-              {/* Tombol Aksi */}
-              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 sm:gap-4 pt-2">
-                <a href="#menu" className="w-full sm:w-auto text-center bg-[#D4AF37] text-black px-7 py-3 rounded-full font-semibold hover:bg-[#B8962E] hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-[#D4AF37]/20 cursor-pointer text-sm sm:text-base">
-                  Lihat Menu
-                </a>
-                
-                {/* 2. Opsional: Tombol Reservasi Langsung di Hero */}
-                <button 
-                  onClick={() => setIsReservationOpen(true)}
-                  className="w-full sm:w-auto text-center border border-[#D4AF37]/50 text-[#D4AF37] px-7 py-3 rounded-full font-medium hover:bg-[#D4AF37]/10 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer text-sm sm:text-base"
-                >
-                  Reservasi Meja
-                </button>
-              </div>
-
-              {/* Stat Brief */}
-              <div className="pt-6 flex items-center justify-center md:justify-start gap-6 sm:gap-8 border-t border-white/10">
-                <div>
-                  <p className="text-xl sm:text-2xl font-bold text-[#D4AF37]">100%</p>
-                  <p className="text-xs sm:text-sm text-gray-400">Arabica Pilihan</p>
-                </div>
-                <div className="h-8 w-px bg-white/10"></div>
-                <div>
-                  <p className="text-xl sm:text-2xl font-bold text-[#D4AF37]">20+</p>
-                  <p className="text-xs sm:text-sm text-gray-400">Varian Menu</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Kolom Kanan: Gambar */}
-            <div className="relative flex justify-center mt-4 md:mt-0 group">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-[#D4AF37]/20 rounded-full filter blur-2xl -z-10 group-hover:bg-[#D4AF37]/30 transition duration-500"></div>
-              
-              <img 
-                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop" 
-                alt="Coffee Cup" 
-                className="w-full max-w-xs sm:max-w-sm md:max-w-md h-[300px] sm:h-[400px] md:h-[480px] object-cover rounded-2xl shadow-2xl border border-white/10 transform md:rotate-2 group-hover:rotate-0 group-hover:scale-102 transition duration-500"
-              />
-            </div>
-
+        {/* Background Slider (Foto Statis, Hanya Fade Transisi) */}
+        {images.map((imgUrl, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img 
+              src={imgUrl} 
+              alt="Koobon Space Ambience" 
+              className="w-full h-full object-cover"
+            />
+            {/* Layer Gelap agar teks selalu terbaca jelas */}
+            <div className="absolute inset-0 bg-black/75"></div>
           </div>
-        </section>
+        ))}
+
+        {/* Hero Content (Teks Statis di Tengah Layar) */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6 pt-16">
+          <span className="inline-block px-4 py-1.5 bg-[#2B1E16]/80 text-[#D4AF37] text-xs font-semibold rounded-full tracking-widest uppercase border border-[#D4AF37]/30 backdrop-blur-md">
+            COFFEE & COZY SPACE
+          </span>
+          
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight drop-shadow-lg">
+            Nikmati Kopi, <br />
+            <span className="text-[#D4AF37]">Temukan Ketenangan.</span>
+          </h1>
+          
+          <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed drop-shadow">
+            Tempat sederhana untuk menikmati racikan biji kopi pilihan, 
+            berbagi cerita hangat, dan menciptakan momen berkesan setiap sore.
+          </p>
+
+          {/* Tombol Aksi */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <a 
+              href="#menu" 
+              className="w-full sm:w-auto bg-[#D4AF37] text-black px-8 py-3.5 rounded-full font-bold hover:bg-[#B8962E] hover:scale-105 active:scale-95 transition duration-300 shadow-lg shadow-[#D4AF37]/20 cursor-pointer text-sm sm:text-base"
+            >
+              Lihat Menu
+            </a>
+            <button 
+              onClick={() => setIsReservationOpen(true)}
+              className="w-full sm:w-auto border border-white/30 bg-black/40 backdrop-blur-md text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white hover:text-black hover:scale-105 active:scale-95 transition duration-300 cursor-pointer text-sm sm:text-base"
+            >
+              Reservasi Meja
+            </button>
+          </div>
+        </div>
+
       </main>
 
       <AboutSection />
@@ -92,7 +93,6 @@ function App() {
       <Promotions />
       <Testimonial />
       
-      {/* 3. Kirim isOpen dan onClose ke ReservationModal */}
       <ReservationModal 
         isOpen={isReservationOpen} 
         onClose={() => setIsReservationOpen(false)} 
