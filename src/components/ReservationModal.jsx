@@ -8,9 +8,9 @@ function ReservationModal({ isOpen, onClose }) {
     const areaOptions = [
         {
             id: 'indoor-ac',
-            name: 'Indoor AC',
-            minSpend: 'Min. Order 50k / meja',
-            desc: 'Area tenang, adem, dan cocok untuk kerja/nugas.',
+            name: 'Depan Simbar',
+            minSpend: 'Min. Order 50k',
+            desc: 'Area tenang, adem, tempat duduk luas dan cocok untuk kumpul bareng teman banyak.',
             image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=600&auto=format&fit=crop'
         },
         {
@@ -24,7 +24,7 @@ function ReservationModal({ isOpen, onClose }) {
             id: 'vip-corner',
             name: 'VIP Working Corner',
             desc: 'Area privat dengan fasilitas colokan melimpah.',
-            minSpend: 'Min. Order 100k / meja',
+            minSpend: 'Min. Order 100k',
             image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=600&auto=format&fit=crop'
         }
     ]
@@ -70,8 +70,8 @@ function ReservationModal({ isOpen, onClose }) {
 
         const currentArea = areaOptions.find(a => a.id === selectedAreaId)
         const message = bookingType === 'table'
-            ? `Halo *Koobon Space*! 👋\n\nSaya ingin melakukan *Reservasi Meja*:\n- *Nama:* ${formData.name}\n- *Tanggal:* ${formData.date}\n- *Jam:* ${formData.time} WITA\n- *Jumlah Orang:* ${formData.guests}\n- *Area Pilihan:* ${formData.area} (${currentArea?.minSpend})\n- *Catatan:* ${formData.notes || '-'}\n\nMohon konfirmasi ketersediaan mejanya. Terima kasih!`
-            : `Halo *Koobon Space*! 👋\n\nSaya ingin mengajukan *Booking Satu Cafe (Private Event)* 🎉:\n- *Nama Penanggung Jawab:* ${formData.name}\n- *Paket Dipilih:* ${selectedPackage.name} (${selectedPackage.price})\n- *Jenis Acara:* ${formData.eventType}\n- *Tanggal Acara:* ${formData.date}\n- *Jam Mulai:* ${formData.time} WITA\n- *Estimasi Jumlah Tamu:* ${formData.guests}\n- *Catatan / Request Khusus:* ${formData.notes || '-'}\n\nMohon info prosedur pembayaran dan ketersediaan tanggalnya. Terima kasih!`
+            ? `Halo *Koobon Space*! \n\nSaya ingin melakukan *Reservasi Meja*:\n- *Nama:* ${formData.name}\n- *Tanggal:* ${formData.date}\n- *Jam:* ${formData.time} WITA\n- *Jumlah Orang:* ${formData.guests}\n- *Area Pilihan:* ${formData.area} (${currentArea?.minSpend})\n- *Catatan:* ${formData.notes || '-'}\n\nMohon konfirmasi ketersediaan mejanya. Terima kasih!`
+            : `Halo *Koobon Space*! \n\nSaya ingin mengajukan *Booking Satu Cafe (Private Event)* :\n- *Nama Penanggung Jawab:* ${formData.name}\n- *Paket Dipilih:* ${selectedPackage.name} (${selectedPackage.price})\n- *Jenis Acara:* ${formData.eventType}\n- *Tanggal Acara:* ${formData.date}\n- *Jam Mulai:* ${formData.time} WITA\n- *Estimasi Jumlah Tamu:* ${formData.guests}\n- *Catatan / Request Khusus:* ${formData.notes || '-'}\n\nMohon info prosedur pembayaran dan ketersediaan tanggalnya. Terima kasih!`
 
         const waUrl = `https://wa.me/6289636097277?text=${encodeURIComponent(message)}`
         window.open(waUrl, '_blank')
@@ -114,8 +114,8 @@ function ReservationModal({ isOpen, onClose }) {
                             type="button"
                             onClick={() => setBookingType('table')}
                             className={`flex-1 py-2 text-xs font-bold rounded-lg transition cursor-pointer ${bookingType === 'table'
-                                    ? 'bg-[#D4AF37] text-black shadow'
-                                    : 'text-gray-400 hover:text-white'
+                                ? 'bg-[#D4AF37] text-black shadow'
+                                : 'text-gray-400 hover:text-white'
                                 }`}
                         >
                             Reservasi Meja
@@ -124,8 +124,8 @@ function ReservationModal({ isOpen, onClose }) {
                             type="button"
                             onClick={() => setBookingType('full')}
                             className={`flex-1 py-2 text-xs font-bold rounded-lg transition cursor-pointer ${bookingType === 'full'
-                                    ? 'bg-[#D4AF37] text-black shadow'
-                                    : 'text-gray-400 hover:text-white'
+                                ? 'bg-[#D4AF37] text-black shadow'
+                                : 'text-gray-400 hover:text-white'
                                 }`}
                         >
                             🎉 Sewa Satu Cafe (Private Event)
@@ -170,8 +170,8 @@ function ReservationModal({ isOpen, onClose }) {
                                         type="button"
                                         onClick={() => handleAreaSelect(area)}
                                         className={`p-2.5 rounded-xl border text-xs font-semibold transition cursor-pointer text-center ${selectedAreaId === area.id
-                                                ? 'bg-[#D4AF37] text-black border-[#D4AF37] shadow font-bold'
-                                                : 'bg-[#222] text-gray-400 border-white/10 hover:border-white/30 hover:text-white'
+                                            ? 'bg-[#D4AF37] text-black border-[#D4AF37] shadow font-bold'
+                                            : 'bg-[#222] text-gray-400 border-white/10 hover:border-white/30 hover:text-white'
                                             }`}
                                     >
                                         {area.name}
@@ -194,8 +194,8 @@ function ReservationModal({ isOpen, onClose }) {
                                         key={pkg.id}
                                         onClick={() => setSelectedPackage(pkg)}
                                         className={`p-4 rounded-2xl border cursor-pointer transition flex flex-col justify-between ${selectedPackage.id === pkg.id
-                                                ? 'bg-[#2B1E16] border-[#D4AF37] text-white shadow-lg'
-                                                : 'bg-[#222] border-white/10 text-gray-400 hover:border-white/30'
+                                            ? 'bg-[#2B1E16] border-[#D4AF37] text-white shadow-lg'
+                                            : 'bg-[#222] border-white/10 text-gray-400 hover:border-white/30'
                                             }`}
                                     >
                                         <div>

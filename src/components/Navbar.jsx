@@ -12,25 +12,23 @@ function Navbar({ onOpenReservation }) {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-[#0D0D0D]/90 backdrop-blur-md border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between ">
+
         {/* Brand Logo */}
         <Link to="/" className="text-2xl font-bold tracking-wider text-[#D4AF37]">
           KOOBON
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 text-sm text-gray-300">
-          <Link to="/" className="hover:text-[#D4AF37] transition">Home</Link>
-          <a href={getNavPath('#about')} className="hover:text-[#D4AF37] transition">About</a>
-          <Link to="/menu" className="hover:text-[#D4AF37] transition">Menu</Link>
-          <a href={getNavPath('#promo')} className="hover:text-[#D4AF37] transition">Promo</a>
-          <a href={getNavPath('#contact')} className="hover:text-[#D4AF37] transition">Contact</a>
-        </div>
-
-        {/* Reservation Button (Desktop) */}
-        <div className="hidden md:block">
-          <button 
+        <div className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-8 text-sm text-gray-300">
+            <Link to="/" className="hover:text-[#D4AF37] transition">Home</Link>
+            <a href={getNavPath('#about')} className="hover:text-[#D4AF37] transition">About</a>
+            <Link to="/menu" className="hover:text-[#D4AF37] transition">Menu</Link>
+            <a href={getNavPath('#promo')} className="hover:text-[#D4AF37] transition">Promo</a>
+            <a href={getNavPath('#contact')} className="hover:text-[#D4AF37] transition">Contact</a>
+          </div>
+          <button
             onClick={onOpenReservation}
             className="bg-[#D4AF37] text-black font-bold px-6 py-2.5 rounded-full hover:bg-[#B8962E] transition shadow-lg shadow-[#D4AF37]/20 cursor-pointer text-sm"
           >
@@ -39,8 +37,8 @@ function Navbar({ onOpenReservation }) {
         </div>
 
         {/* Mobile Hamburger Button */}
-        <button 
-          onClick={() => setIsOpen(!isOpen)} 
+        <button
+          onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-gray-300 hover:text-white focus:outline-none"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +59,7 @@ function Navbar({ onOpenReservation }) {
           <Link to="/menu" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Menu</Link>
           <a href={getNavPath('#promo')} onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Promo</a>
           <a href={getNavPath('#contact')} onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-[#D4AF37]">Contact</a>
-          <button 
+          <button
             onClick={() => {
               setIsOpen(false)
               if (onOpenReservation) onOpenReservation()

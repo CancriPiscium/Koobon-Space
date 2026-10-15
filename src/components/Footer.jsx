@@ -42,7 +42,7 @@ function Footer() {
             </p>
 
             {/* Social Media Buttons dengan Ikon React Icons */}
-            <div className="flex gap-3 pt-2 justify-between md:justify-start">
+            <div className="flex gap-3 pt-2 md:justify-start">
               <a
                 href="https://www.instagram.com/koobon.space/"
                 target="_blank"
